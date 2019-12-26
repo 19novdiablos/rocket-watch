@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "d3": "^5.14.2",
     "express": "^4.17.1",
     "next": "9.1.5",
     "react": "16.12.0",

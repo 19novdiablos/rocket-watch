@@ -1,88 +1,64 @@
 import React from 'react'
 import Head from 'next/head'
-import Nav from '../components/nav'
+var d3 = require("d3")
+class index extends React.Component {
+  componentDidMount () {
+    var width = Math.max(960, innerWidth),
+    height = Math.max(500, innerHeight);
 
-const Home = () => (
-  <div>
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+    var i = 0;
 
-    <Nav />
+    var svg = d3.select("#ahihi").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
-    <div className="hero">
-      <h1 className="title">Welcome to Next.js!</h1>
-      <p className="description">
-        To get started, edit <code>pages/index.js</code> and save to reload.
-      </p>
+    svg.append("rect")
+    .attr("width", width)
+    .attr("height", height)
+    .on("ontouchstart" in document ? "touchmove" : "mousemove", particle);
 
-      <div className="row">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Learn more about Next.js in the documentation.</p>
-        </a>
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Next.js Learn &rarr;</h3>
-          <p>Learn about Next.js by following an interactive tutorial!</p>
-        </a>
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Find other example boilerplates on the Next.js GitHub.</p>
-        </a>
-      </div>
+    function particle() {
+      var m = d3.mouse(this)
+
+      svg.insert("circle", "rect")
+        .attr("cx", m[0])
+        .attr("cy", m[1])
+        .attr("r", 1e-6)
+        .style("stroke", d3.hsl((i = (i + 1) % 360), 1, .5))
+        .style("stroke-opacity", 1)
+        .transition()
+        .duration(5000)
+        .ease(Math.sqrt)
+        .attr("r", 100)
+        .style("stroke-opacity", 1e-6)
+        .remove();
+
+      d3.event.preventDefault();
+    }
+  }
+  render() {
+    return <div id="ahihi">
+      <Head>
+        <title>Home</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      {/* <svg width="1078" height="782"><circle cx="726" cy="145" r="85.40304458752374" style={ {stroke: 'rgb(0, 255, 217)', 'stroke-opacity': '0.14597', fill:  'red'}}>
+        </circle>
+        <rect width="1078" height="782"></rect>
+      </svg> */}
+      <style>{`
+        rect {
+          fill: none;
+          pointer-events: all;
+        }
+        
+        circle {
+          fill: none;
+          stroke-width: 2.5px;
+        }
+      `}</style>
     </div>
+  }
+}
 
-    <style jsx>{`
-      .hero {
-        width: 100%;
-        color: #333;
-      }
-      .title {
-        margin: 0;
-        width: 100%;
-        padding-top: 80px;
-        line-height: 1.15;
-        font-size: 48px;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        border: 1px solid #9b9b9b;
-      }
-      .card:hover {
-        border-color: #067df7;
-      }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
-      }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: #333;
-      }
-    `}</style>
-  </div>
-)
-
-export default Home
+export default index
