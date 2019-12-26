@@ -29,7 +29,7 @@ class index extends React.Component {
         .transition()
         .duration(2000)
         .ease(Math.sqrt)
-        .attr("r", 100)
+        .attr("r", 150)
         .style("stroke-opacity", 1e-6)
         .remove();
 
