@@ -37,12 +37,12 @@ class index extends React.Component {
     }
   }
   render() {
-    return <div id="ahihi" style={{ position: 'fixed', width: '100%', height: '100%' }}>
+    return <div id="ahihi" style={{ position: 'fixed', width: '100%', height: '100%', background: '#222' }}>
       <Head>
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div style={{ 'position': 'fixed', 'top': '50%', 'font-size': '20px', 'margin': 'auto', 'text-align': 'center', 'width': '100%', 'z-index': '-1',}}>Comming soon ...</div>
+      <div style={{ 'position': 'fixed', 'top': '50%', 'font-size': '20px', 'margin': 'auto', 'text-align': 'center', 'width': '100%', 'z-index': '-1', color: '#424242'}}>Comming soon ...</div>
       <style>{`
         rect {
           fill: none;
