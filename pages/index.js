@@ -3,19 +3,19 @@ import Head from 'next/head'
 var d3 = require("d3")
 class index extends React.Component {
   componentDidMount () {
-    var width = Math.max(960, innerWidth),
-    height = Math.max(500, innerHeight);
+    var width = '100%',
+    height = '100%'
 
     var i = 0;
 
     var svg = d3.select("#ahihi").append("svg")
-    .attr("width", '100%')
-    .attr("height", '100%');
+                .attr("width", width)
+                .attr("height", height)
 
     svg.append("rect")
     .attr("width", width)
     .attr("height", height)
-    .on("ontouchstart" in document ? "touchmove" : "mousemove", particle);
+    .on("ontouchstart" in document ? "touchmove" : "mousemove", particle)
 
     function particle() {
       var m = d3.mouse(this)
@@ -31,9 +31,9 @@ class index extends React.Component {
         .ease(Math.sqrt)
         .attr("r", 150)
         .style("stroke-opacity", 1e-6)
-        .remove();
+        .remove()
 
-      d3.event.preventDefault();
+      d3.event.preventDefault()
     }
   }
   render() {
