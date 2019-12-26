@@ -9,8 +9,8 @@ class index extends React.Component {
     var i = 0;
 
     var svg = d3.select("#ahihi").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("width", '100%')
+    .attr("height", '100%');
 
     svg.append("rect")
     .attr("width", width)
@@ -27,7 +27,7 @@ class index extends React.Component {
         .style("stroke", d3.hsl((i = (i + 1) % 360), 1, .5))
         .style("stroke-opacity", 1)
         .transition()
-        .duration(5000)
+        .duration(2000)
         .ease(Math.sqrt)
         .attr("r", 100)
         .style("stroke-opacity", 1e-6)
@@ -37,21 +37,20 @@ class index extends React.Component {
     }
   }
   render() {
-    return <div id="ahihi">
+    return <div id="ahihi" style={{ position: 'fixed', width: '100%', height: '100%' }}>
       <Head>
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <svg width="1078" height="782"><circle cx="726" cy="145" r="85.40304458752374" style={ {stroke: 'rgb(0, 255, 217)', 'stroke-opacity': '0.14597', fill:  'red'}}>
-        </circle>
-        <rect width="1078" height="782"></rect>
-      </svg> */}
+      <div style={{ 'position': 'fixed', 'top': '50%', 'font-size': '20px', 'margin': 'auto', 'text-align': 'center', 'width': '100%', 'z-index': '-1',}}>Comming soon ...</div>
       <style>{`
         rect {
           fill: none;
           pointer-events: all;
         }
-        
+        body {
+          margin: 0;
+        }
         circle {
           fill: none;
           stroke-width: 2.5px;

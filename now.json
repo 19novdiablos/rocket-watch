@@ -1,16 +1,4 @@
 {
     "version": 2,
-    "name": "test-deploy",
-    "builds": [{
-      "src": "package.json",
-      "use": "@now/next"
-    }],
-    "routes": [{
-      "src": "/",
-      "dest": "/pages/index.js"
-    }, {
-      "src": "/(.*)",
-      "dest": "/_src/server.js"
-    }],
-    "regions": ["sfo"]
+    "name": "rocket-watch"
   }
