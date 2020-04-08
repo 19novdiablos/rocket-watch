@@ -5,9 +5,7 @@ class index extends React.Component {
   componentDidMount () {
     var width = '100%',
     height = '100%'
-
     var i = 0;
-
     var svg = d3.select("#ahihi").append("svg")
                 .attr("width", width)
                 .attr("height", height)
@@ -15,9 +13,38 @@ class index extends React.Component {
     svg.append("rect")
     .attr("width", width)
     .attr("height", height)
-    .on("ontouchstart" in document ? "touchmove" : "mousemove", particle)
+    .on("touchstart", listen)
+    .on("touchend", ignore)
+    .on("touchleave", ignore)
+    .on("mousemove", onmove)
 
-    function particle() {
+
+    var path
+    function listen () {
+      var m = d3.mouse(this)
+      path = svg.insert("circle", "rect")
+            .attr("cx", m[0])
+            .attr("cy", m[1])
+            .attr("r", 1e-6)
+            .style("stroke", d3.hsl((i = (i + 1) % 360), 1, .5))
+            .style("stroke-opacity", 1)
+            .transition()
+            .duration(2000)
+            .ease(Math.sqrt)
+            .attr("r", 50)
+            .style("stroke-opacity", 1e-6)
+            .remove()
+    
+      if (d3.event.type !== 'mousedown') {
+        svg.on("touchmove", onmove)
+      }
+    }
+    
+    function ignore () {
+      svg.on("touchmove", null);
+    }
+
+    function onmove () {
       var m = d3.mouse(this)
 
       svg.insert("circle", "rect")
