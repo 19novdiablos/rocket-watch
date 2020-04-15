@@ -69,7 +69,7 @@ class index extends React.Component {
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div style={{ 'position': 'fixed', 'top': '50%', 'font-size': '20px', 'margin': 'auto', 'text-align': 'center', 'width': '100%', 'z-index': '-1', color: '#424242'}}>Comming soon ...</div>
+      <div style={{ 'position': 'fixed', 'top': '50%', 'fontSize': '20px', 'margin': 'auto', 'textAlign': 'center', 'width': '100%', 'zIndex': '-1', color: '#424242'}}>Comming soon ...</div>
       <style>{`
         rect {
           fill: none;

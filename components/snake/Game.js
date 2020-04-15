@@ -10,6 +10,7 @@ const getRandomCoordinates = () => {
     let y = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2;
     return [x, y]
 }
+var timer = null
 
 const initialState = {
     food: getRandomCoordinates(),
@@ -26,14 +27,14 @@ class Game extends Component {
     state = initialState;
 
     componentDidMount() {
-        setInterval(this.moveSnake, this.state.speed);
+        timer = setInterval(this.moveSnake, this.state.speed);
         document.onkeydown = this.onKeyDown;
     }
 
     componentDidUpdate() {
         this.checkIfOutOfBorders();
         this.checkIfCollapsed();
-        this.checkIfEat();
+        this.checkIfEat()
     }
 
     onKeyDown = (e) => {
@@ -120,22 +121,36 @@ class Game extends Component {
 
     increaseSpeed() {
         if (this.state.speed > 10) {
+            let speed = this.state.speed - 10
             this.setState({
-                speed: this.state.speed - 10
+                speed
             })
+            this.updateSpeed(speed)
         }
+    }
+    
+    updateSpeed(t) {
+        clearInterval(timer)
+        timer = setInterval(this.moveSnake, t)
     }
 
     onGameOver() {
         alert(`Game Over. Snake length is ${this.state.snakeDots.length}`);
         this.setState(initialState)
+        this.updateSpeed(initialState.speed)
     }
 
     render() {
         return (
-            <div className="game-area">
-                <Snake snakeDots={this.state.snakeDots} />
-                <Food dot={this.state.food} />
+            <div className="d-flex justify-content-around mt-2">
+                <div>
+                    <h1>Score: {this.state.snakeDots.length}</h1>
+                <h1>Speed: {200 - this.state.speed}</h1>
+                </div>
+                <div className="game-area">
+                    <Snake snakeDots={this.state.snakeDots} />
+                    <Food dot={this.state.food} />
+                </div>
             </div>
         );
     }

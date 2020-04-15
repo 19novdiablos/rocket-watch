@@ -1,6 +1,6 @@
 .game-area {
   position: relative;
-  margin: 50px auto;
+  /* margin: 50px auto; */
   width: 602px;
   height: 602px;
   border: 2px solid #000;
@@ -10,8 +10,8 @@
 
 .snake-dot {
   position: absolute;
-  width: calc(2% - 2px);
-  height: calc(2% - 2px);
+  width: 2%;
+  height: 2%;
   background-color: #000;
   border: 1px solid #fff;
   z-index: 2;
@@ -24,8 +24,8 @@
 
 .snake-food {
   position: absolute;
-  width: calc(2% - 2px);
-  height: calc(2% - 2px);
+  width: 2%;
+  height: 2%;
   background: red;
   border: 1px solid #fff;
   z-index: 1;
