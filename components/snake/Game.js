@@ -145,7 +145,7 @@ class Game extends Component {
             <div className="d-flex justify-content-around mt-2">
                 <div>
                     <h1>Score: {this.state.snakeDots.length}</h1>
-                <h1>Speed: {200 - this.state.speed}</h1>
+                    <h1>Speed: {200 - this.state.speed}</h1>
                 </div>
                 <div className="game-area">
                     <Snake snakeDots={this.state.snakeDots} />
