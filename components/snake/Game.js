@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import Snake from 'components/snake/Snake';
-import Food from 'components/snake/Food';
-import 'assets/snake/index.css';
+import React, { Component } from 'react'
+import Snake from 'components/snake/Snake'
+import Food from 'components/snake/Food'
+import 'assets/snake/index.css'
 
 const getRandomCoordinates = () => {
-  let min = 1;
-  let max = 98;
-  let x = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2;
-  let y = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2;
+  let min = 1
+  let max = 98
+  let x = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2
+  let y = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2
   return [x, y]
 }
 var timer = null
@@ -24,7 +24,7 @@ const initialState = {
 
 class Game extends Component {
 
-  state = initialState;
+  state = initialState
 
   componentDidMount() {
     timer = setInterval(this.moveSnake, this.state.speed)
@@ -38,7 +38,7 @@ class Game extends Component {
   }
 
   onKeyDown = (e) => {
-    e = e || window.event;
+    e = e || window.event
     let muteKey = {
       'UP': 40,
       'DOWN': 38,
@@ -51,36 +51,36 @@ class Game extends Component {
     switch (e.keyCode) {
       case 38:
         this.setState({ direction: 'UP' })
-        break;
+        break
       case 40:
         this.setState({ direction: 'DOWN' })
-        break;
+        break
       case 37:
         this.setState({ direction: 'LEFT' })
-        break;
+        break
       case 39:
         this.setState({ direction: 'RIGHT' })
-        break;
+        break
     }
   }
 
   moveSnake = () => {
-    let dots = [...this.state.snakeDots];
+    let dots = [...this.state.snakeDots]
     let head = dots[dots.length - 1]
 
     switch (this.state.direction) {
       case 'RIGHT':
         head = [head[0] + 2, head[1]]
-        break;
+        break
       case 'LEFT':
         head = [head[0] - 2, head[1]]
-        break;
+        break
       case 'DOWN':
         head = [head[0], head[1] + 2]
-        break;
+        break
       case 'UP':
         head = [head[0], head[1] - 2]
-        break;
+        break
     }
     dots.push(head)
     dots.shift()
@@ -99,7 +99,7 @@ class Game extends Component {
   checkIfCollapsed() {
     let snake = [...this.state.snakeDots]
     let head = snake[snake.length - 1]
-    snake.pop();
+    snake.pop()
     snake.forEach(dot => {
       if (head[0] == dot[0] && head[1] == dot[1]) {
         this.onGameOver()
@@ -108,8 +108,8 @@ class Game extends Component {
   }
 
   checkIfEat() {
-    let head = this.state.snakeDots[this.state.snakeDots.length - 1];
-    let food = this.state.food;
+    let head = this.state.snakeDots[this.state.snakeDots.length - 1]
+    let food = this.state.food
     if (head[0] == food[0] && head[1] == food[1]) {
       console.log('Eating')
       this.enlargeSnake()
@@ -161,8 +161,8 @@ class Game extends Component {
           <Food dot={this.state.food} />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Game;
+export default Game
