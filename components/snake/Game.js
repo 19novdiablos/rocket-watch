@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Snake from 'components/snake/Snake'
 import Food from 'components/snake/Food'
 import 'assets/snake/index.css'
+// import { AiHandler } from 'plugin/ai/snake-01'
 
 const getRandomCoordinates = () => {
   let min = 1
@@ -49,10 +50,10 @@ class Game extends Component {
       return
     }
     switch (e.keyCode) {
-      case 38:
+      case 40:
         this.setState({ direction: 'UP' })
         break
-      case 40:
+      case 38:
         this.setState({ direction: 'DOWN' })
         break
       case 37:
@@ -67,7 +68,9 @@ class Game extends Component {
   moveSnake = () => {
     let dots = [...this.state.snakeDots]
     let head = dots[dots.length - 1]
-
+    // let {snakeDots, food, direction} = this.state
+    // let d =  AiHandler(snakeDots, food, direction)
+    // console.log(d)
     switch (this.state.direction) {
       case 'RIGHT':
         head = [head[0] + 2, head[1]]
