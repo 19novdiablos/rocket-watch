@@ -121,7 +121,7 @@ class Game extends Component {
 
     increaseSpeed() {
         if (this.state.speed > 10) {
-            let speed = this.state.speed - 10
+            let speed = this.state.speed - 50
             this.setState({
                 speed
             })
