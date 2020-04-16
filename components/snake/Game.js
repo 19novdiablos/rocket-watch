@@ -120,8 +120,8 @@ class Game extends Component {
     }
 
     increaseSpeed() {
-        if (this.state.speed > 10) {
-            let speed = this.state.speed - 50
+        if (this.state.speed > 50) {
+            let speed = this.state.speed - 30
             this.setState({
                 speed
             })
@@ -145,7 +145,7 @@ class Game extends Component {
             <div className="d-flex justify-content-around mt-2">
                 <div>
                     <h1>Score: {this.state.snakeDots.length}</h1>
-                <h1>Speed: {200 - this.state.speed}</h1>
+                <h1>Speed: X{(200 - this.state.speed + 30)/30}</h1>
                 </div>
                 <div className="game-area">
                     <Snake snakeDots={this.state.snakeDots} />
