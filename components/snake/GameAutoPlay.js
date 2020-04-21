@@ -15,7 +15,7 @@ var timer = null
 
 const initialState = {
   food: getRandomCoordinates(),
-  speed: 200,
+  speed: 10,
   direction: 'RIGHT',
   snakeDots: [
     [0, 0],
@@ -147,7 +147,7 @@ class Game extends Component {
   }
 
   onGameOver() {
-    alert(`Game Over. Snake length is ${this.state.snakeDots.length}`)
+    // alert(`Game Over. Snake length is ${this.state.snakeDots.length}`)
     this.setState(initialState)
     this.updateSpeed(initialState.speed)
   }
@@ -157,7 +157,7 @@ class Game extends Component {
       <div className="d-flex justify-content-around mt-2" id='game'>
         <div>
           <h1>Score: {this.state.snakeDots.length}</h1>
-          <h1>Speed: {200 - this.state.speed}</h1>
+          {/* <h1>Speed: {200 - this.state.speed}</h1> */}
         </div>
         <div className="game-area">
           <Snake snakeDots={this.state.snakeDots} />
