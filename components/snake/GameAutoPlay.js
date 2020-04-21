@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Snake from 'components/snake/Snake'
 import Food from 'components/snake/Food'
-import 'assets/snake/index.css'
+import 'assets/snake/snake-ai.css'
 import { bfsSnake } from 'plugin/ai/snake-01'
 
 const getRandomCoordinates = () => {
