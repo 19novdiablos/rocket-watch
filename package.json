@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
@@ -13,9 +14,9 @@
     "bootstrap": "^4.4.1",
     "d3": "^5.14.2",
     "express": "^4.17.1",
+    "http-server": "^0.12.1",
     "js-priority-queue": "^0.1.5",
     "next": "9.1.5",
-    "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "react": "16.12.0"
   }
 }
