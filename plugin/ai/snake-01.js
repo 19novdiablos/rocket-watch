@@ -3,6 +3,7 @@ module.exports = {
 }
 
 var PriorityQueue = require('js-priority-queue/priority-queue')
+import { step } from 'components/snake/GameAutoPlay'
 // input: { snake, food, direction }
 // output: UP | DOWN | LEFT | RIGHT
 function bfsSnake({ snake, food, direction }) {
@@ -56,30 +57,30 @@ function getNodeWithChild({ snake, food, direction, parents, log }) {
   let headSnake = snake[snake.length - 1]
   let array = []
   
-  if (headSnake[0] + 2 <= 99) {
+  if (headSnake[0] + step <= 99) {
     array.push({
-      head: [headSnake[0] + 2, headSnake[1]],
+      head: [headSnake[0] + step, headSnake[1]],
       parents: { snake, food, direction },
       direction: 'RIGHT',
     })
   }
-  if (headSnake[0] - 2 >= 0) {
+  if (headSnake[0] - step >= 0) {
     array.push({
-      head: [headSnake[0] - 2, headSnake[1]],
+      head: [headSnake[0] - step, headSnake[1]],
       parents: { snake, food, direction },
       direction: 'LEFT',
     })
   }
-  if (headSnake[1] + 2 <= 99) {
+  if (headSnake[1] + step <= 99) {
     array.push({
-      head: [headSnake[0], headSnake[1] + 2],
+      head: [headSnake[0], headSnake[1] + step],
       parents: { snake, food, direction },
       direction: 'DOWN',
     })
   }
-  if (headSnake[1] - 2 >= 0) {
+  if (headSnake[1] - step >= 0) {
     array.push({
-      head: [headSnake[0], headSnake[1] - 2],
+      head: [headSnake[0], headSnake[1] - step],
       parents: { snake, food, direction },
       direction: 'UP',
     })
