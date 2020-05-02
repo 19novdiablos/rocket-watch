@@ -1,4 +1,4 @@
-.game-area {
+.snake-ai .game-area {
   position: relative;
   /* margin: 50px auto; */
   width: 950px;
@@ -16,7 +16,7 @@ h1 {
   color: #636363;
 }
 
-.snake-dot {
+.snake-ai .snake-dot {
   position: absolute;
   width: 1%;
   height: 1%;
@@ -25,12 +25,12 @@ h1 {
   z-index: 2;
 }
 
-.snake-dot.head {
+.snake-ai .snake-dot.head {
   background-color: grey;
   animation: head .25s infinite linear;
 }
 
-.snake-food {
+.snake-ai .snake-food {
   position: absolute;
   width: 1%;
   height: 1%;
