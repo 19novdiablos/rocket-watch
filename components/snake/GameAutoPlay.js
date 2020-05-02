@@ -12,6 +12,7 @@ const getRandomCoordinates = () => {
   return [x, y]
 }
 var timer = null
+export const step = 1
 
 const initialState = {
   food: getRandomCoordinates(),
@@ -70,19 +71,18 @@ class Game extends Component {
     let head = dots[dots.length - 1]
     let {snakeDots, food, direction} = this.state
     let d =  bfsSnake({snake: snakeDots, food, direction})
-    console.log(d.priority)
     switch (d.status.direction) {
       case 'RIGHT':
-        head = [head[0] + 2, head[1]]
+        head = [head[0] + step, head[1]]
         break
       case 'LEFT':
-        head = [head[0] - 2, head[1]]
+        head = [head[0] - 1, head[1]]
         break
       case 'DOWN':
-        head = [head[0], head[1] + 2]
+        head = [head[0], head[1] + step]
         break
       case 'UP':
-        head = [head[0], head[1] - 2]
+        head = [head[0], head[1] - 1]
         break
     }
     dots.push(head)
@@ -114,7 +114,6 @@ class Game extends Component {
     let head = this.state.snakeDots[this.state.snakeDots.length - 1]
     let food = this.state.food
     if (head[0] == food[0] && head[1] == food[1]) {
-      console.log('Eating')
       this.enlargeSnake()
       this.increaseSpeed()
       this.setState({
