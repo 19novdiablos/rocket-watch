@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Snake from 'components/snake/Snake'
 import Food from 'components/snake/Food'
 import 'assets/snake/snake-ai.css'
-import { bfsSnake } from 'plugin/ai/snake-01'
+import { ucsSnake } from 'plugin/ai/snake-01'
 
 const getRandomCoordinates = () => {
   let min = 1
@@ -18,13 +18,14 @@ const initialState = {
   food: getRandomCoordinates(),
   speed: 10,
   direction: 'RIGHT',
+  h: 'e',
   snakeDots: [
     [0, 0],
     [2, 0]
   ]
 }
 
-class Game extends Component {
+class GameAutoPlay extends Component {
 
   state = initialState
 
@@ -70,7 +71,7 @@ class Game extends Component {
     let dots = [...this.state.snakeDots]
     let head = dots[dots.length - 1]
     let {snakeDots, food, direction} = this.state
-    let d =  bfsSnake({snake: snakeDots, food, direction})
+    let d =  ucsSnake({snake: snakeDots, food, direction, h: this.props.h})
     switch (d.status.direction) {
       case 'RIGHT':
         head = [head[0] + step, head[1]]
@@ -153,7 +154,7 @@ class Game extends Component {
 
   render() {
     return (
-      <div className="d-flex justify-content-around mt-2" id='game'>
+      <div className="d-flex justify-content-around mt-2 snake-ai" id='game'>
         <div>
           <h1>Score: {this.state.snakeDots.length}</h1>
           {/* <h1>Speed: {200 - this.state.speed}</h1> */}
@@ -167,4 +168,4 @@ class Game extends Component {
   }
 }
 
-export default Game
+export default GameAutoPlay

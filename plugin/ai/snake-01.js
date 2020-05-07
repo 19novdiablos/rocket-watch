@@ -1,18 +1,19 @@
 module.exports = {
-  bfsSnake,
+  ucsSnake,
 }
 
 var PriorityQueue = require('js-priority-queue/priority-queue')
 import { step } from 'components/snake/GameAutoPlay'
 // input: { snake, food, direction }
 // output: UP | DOWN | LEFT | RIGHT
-function bfsSnake({ snake, food, direction }) {
+function ucsSnake({ snake, food, direction, h }) {
   let q = new PriorityQueue({
       comparator: function(a, b) {
         return a.priority - b.priority
       }
     }),
-    rooStatus = getNodeWithChild({ snake, food, direction, parents: null, log: false })
+    hInput = h || 'm',
+    rooStatus = getNodeWithChild({ snake, food, direction, parents: null, log: false, h: hInput })
 
   q.queue(rooStatus)
   while (q.length) {
@@ -27,6 +28,7 @@ function bfsSnake({ snake, food, direction }) {
       direction: (item.status || {}).direction,
       parents: item,
       log: true,
+      h: hInput,
     })
     nextStatusArray.childs.forEach(child => {
       if(!child.childs) {
@@ -36,6 +38,7 @@ function bfsSnake({ snake, food, direction }) {
           direction: (child.status || {}).direction,
           parents: child,
           log: true,
+          h
         })
       }
       q.queue(child)
@@ -44,16 +47,20 @@ function bfsSnake({ snake, food, direction }) {
   return null
 }
 
-function getPriority(point01, point02) {
+function getPriority(point01, point02, h) {
   let a = Math.abs(point01[0] - point02[0]),
-    b = Math.abs(point01[1] - point02[1])
-  return a + b
+    b = Math.abs(point01[1] - point02[1]),
+    heuristic = {
+      m: a + b,
+      e : Math.sqrt(a*a + b*b)
+    }
+  return heuristic[h || 'm']
 }
 function isEqual(point01, point02) {
   return point01[0] === point02[0] && point01[1] === point02[1]
 }
 
-function getNodeWithChild({ snake, food, direction, parents, log }) {
+function getNodeWithChild({ snake, food, direction, parents, log, h }) {
   let headSnake = snake[snake.length - 1]
   let array = []
   
@@ -95,7 +102,7 @@ function getNodeWithChild({ snake, food, direction, parents, log }) {
           direction: item.direction,
         },
         parents,
-        priority: getPriority(newSnake[newSnake.length - 1], food),
+        priority: getPriority(newSnake[newSnake.length - 1], food, h || 'm'),
         childs: null
       }
     }
@@ -122,4 +129,4 @@ function getDerectTion(node) {
 // var food = [80, 2]
 // var direction = 'RIGHT'
 // var snakeDots =  [[10, 0]]
-// bfsSnake({ snake: snakeDots, food, direction })
+// ucsSnake({ snake: snakeDots, food, direction })
