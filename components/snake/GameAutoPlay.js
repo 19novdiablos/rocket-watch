@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Snake from 'components/snake/Snake'
 import Food from 'components/snake/Food'
 import 'assets/snake/snake-ai.css'
-import { bfsSnake } from 'plugin/ai/snake-01'
+import { ucsSnake } from 'plugin/ai/snake-01'
 
 const getRandomCoordinates = () => {
   let min = 1
@@ -18,6 +18,7 @@ const initialState = {
   food: getRandomCoordinates(),
   speed: 10,
   direction: 'RIGHT',
+  h: 'e',
   snakeDots: [
     [0, 0],
     [2, 0]
@@ -70,7 +71,7 @@ class GameAutoPlay extends Component {
     let dots = [...this.state.snakeDots]
     let head = dots[dots.length - 1]
     let {snakeDots, food, direction} = this.state
-    let d =  bfsSnake({snake: snakeDots, food, direction})
+    let d =  ucsSnake({snake: snakeDots, food, direction, h: this.props.h})
     switch (d.status.direction) {
       case 'RIGHT':
         head = [head[0] + step, head[1]]
