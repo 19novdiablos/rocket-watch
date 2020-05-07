@@ -24,7 +24,7 @@ const initialState = {
   ]
 }
 
-class Game extends Component {
+class GameAutoPlay extends Component {
 
   state = initialState
 
@@ -153,7 +153,7 @@ class Game extends Component {
 
   render() {
     return (
-      <div className="d-flex justify-content-around mt-2" id='game'>
+      <div className="d-flex justify-content-around mt-2 snake-ai" id='game'>
         <div>
           <h1>Score: {this.state.snakeDots.length}</h1>
           {/* <h1>Speed: {200 - this.state.speed}</h1> */}
@@ -167,4 +167,4 @@ class Game extends Component {
   }
 }
 
-export default Game
+export default GameAutoPlay
