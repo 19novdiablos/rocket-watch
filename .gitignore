@@ -25,3 +25,8 @@ yarn-debug.log*
 yarn-error.log*
 
 .now
+
+#model dqn
+/models
+/public/model.json
+/public/weights.bin
