@@ -57,19 +57,22 @@ export async function SnakeMaster() {
   let qNet = await tf.loadLayersModel('/model.json')
   return {
     getNextAction({ snake, food, direction}) {
-      tf.tidy(() => {
-        const state = {
-          s: snake,
-          f: food
-        }
-        const stateTensor = _getStateTensor(state, 8, 8);
-        const predictOut = qNet.predict(stateTensor);
-        let currentQValues = predictOut.dataSync();
-        let bestAction = ALL_ACTIONS[predictOut.argMax(-1).dataSync()[0]]
-        // console.log([ currentQValues ]);
-        console.log(TRANLSLATE_ACTIONS[direction][bestAction])
-        return 'UP'
-      });
+      return new Promise((rs, rj) => {
+        tf.tidy(() => {
+          const state = {
+            s: snake,
+            f: food
+          }
+          const stateTensor = _getStateTensor(state, 8, 8);
+          const predictOut = qNet.predict(stateTensor);
+          let currentQValues = predictOut.dataSync();
+          let bestAction = ALL_ACTIONS[predictOut.argMax(-1).dataSync()[0]]
+          // console.log([ currentQValues ]);
+          console.log(TRANLSLATE_ACTIONS[direction][bestAction])
+          console.log(bestAction)
+          rs(TRANLSLATE_ACTIONS[direction][bestAction])
+        })
+      })
     }
   }
 }

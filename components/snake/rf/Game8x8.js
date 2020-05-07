@@ -16,7 +16,7 @@ var timer = null
 export const step = 1
 
 const initialState = {
-  food: [0, 1],
+  food: [5, 1],
   speed: 5000,
   direction: 'RIGHT',
   h: 'e',
@@ -27,7 +27,10 @@ const initialState = {
   ]
 }
 class Game8x8 extends Component {
-  
+  constructor(props) {
+    super(props)
+    this.moveSnake = this.moveSnake.bind(this)
+  }
   state = initialState
   qNet = {}
   async componentDidMount() {
@@ -76,16 +79,16 @@ class Game8x8 extends Component {
 
   moveSnake = async function() {
     let dots = [...this.state.snakeDots]
-    let head = dots[0]
+    let head = dots[dots.length - 1]
     let {snakeDots, food, direction} = this.state
     let action =  'RIGHT'
     action = await this.qNet.getNextAction({snake: snakeDots.reverse(), food: [food], direction, h: this.props.h})
     switch (action) {
       case 'RIGHT':
-        head = [head[0] - step, head[1]]
+        head = [head[0] + step, head[1]]
         break
       case 'LEFT':
-        head = [head[0] + step, head[1]]
+        head = [head[0] - step, head[1]]
         break
       case 'DOWN':
         head = [head[0], head[1] - step]
