@@ -223,7 +223,7 @@ export function parseArguments() {
   });
   parser.addArgument('--savePath', {
     type: 'string',
-    defaultValue: './public',
+    defaultValue: '../public',
     help: 'File path to which the online DQN will be saved after training.'
   });
   parser.addArgument('--logDir', {

@@ -1,0 +1,51 @@
+.snake-8x8 .game-area {
+  position: relative;
+  /* margin: 50px auto; */
+  width: 950px;
+  height: 950px;
+  border: 1px solid #131313;
+  background: repeating-linear-gradient(to right,transparent 0 calc(12.5% - 1px), #2828287d calc(12.5% - 1px) 12.5%),
+  repeating-linear-gradient(to bottom,transparent 0 calc(12.5% - 1px), #2828287d calc(12.5% - 1px) 12.5%) #000;
+}
+
+body {
+  background: #131313;
+}
+
+h1 {
+  color: #636363;
+}
+
+.snake-8x8 .snake-dot {
+  position: absolute;
+  width: 12.5%;
+  height: 12.5%;
+  background-color: #54d000;
+  border: 1px solid #42a200;
+  z-index: 2;
+}
+
+.snake-8x8 .snake-dot.head {
+  background-color: grey;
+  animation: head .25s infinite linear;
+}
+
+.snake-8x8 .snake-food {
+  position: absolute;
+  width: 12.5%;
+  height: 12.5%;
+  background: #fff;
+  border: 1px solid #fff;
+  z-index: 1;
+}
+
+@keyframes head {
+  from {
+    background-color: #fff;
+    border: 1px solid #fff;
+  }
+  to {
+    background-color: #54d000;
+    border: 1px solid #42a200;
+  }
+}
